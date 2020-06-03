@@ -11,7 +11,7 @@ $data=$ORDER->load_order_by_id($_GET['ORDER_ID']);
 $data1=$ORDER->load_name_subject_and_semester_code($_GET['ORDER_ID']);
 $data2=$ORDER->load_name_timelog_admincheck_by_id($_GET['ORDER_ID']);
 if($data2['name']==NULL){
-    $_SESSION["admincheck"] = "ข้อมูลนี้ยังไม่ถูกหัวหน้าแผนกยื่นยันการในตรวจขอสั่งซื้อวัสดุการสอน";
+    $_SESSION["admincheck"] = "ข้อมูลนี้ยังไม่ถูกหัวหน้าแผนกยื่นยันในตรวจสอบคำขอซื้อวัสดุการสอน";
 }
 $_SESSION["sm"]=$data1['semester_code'];
 $_SESSION["smn"]=$data1['subject_name'];
@@ -27,7 +27,7 @@ function header(){
     $this->AddFont('THSarabunNew','','THSarabunNew.php');
     $this->SetFont('THSarabunNew','',20);
   
-    $this->Cell(0,5,iconv('UTF-8', 'cp874', 'รายการขอสั่งซื้อวัสดุการสอน สาขาวิทยาศาสตร์คอมพิวเตอร์'),0,0,'L');
+    $this->Cell(0,5,iconv('UTF-8', 'cp874', 'รายการขอซื้อวัสดุการสอน สาขาวิทยาศาสตร์คอมพิวเตอร์'),0,0,'L');
     $this->Ln(10);
     $this->Cell(0,5,iconv('UTF-8', 'cp874', 'ประจำปีการศึกษา '.$_SESSION["sm"]),0,0,'L');
     $this->Ln(10);
@@ -44,8 +44,8 @@ function headertb(){
     $this->AddFont('THSarabunNew','b','THSarabunNew_b.php');
     $this->SetFont('THSarabunNew','b',16);
     $this->Cell(20,10,iconv('UTF-8', 'cp874', 'ลำดับ'),1,0,'C');
-    $this->Cell(30,10,iconv('UTF-8', 'cp874', 'รายการ'),1,0,'C');
-    
+    $this->Cell(50,10,iconv('UTF-8', 'cp874', 'รายการ'),1,0,'C');
+    $this->Cell(70,10,iconv('UTF-8', 'cp874', 'รายละเอียด'),1,0,'C');
     $this->Cell(20,10,iconv('UTF-8', 'cp874', 'จำนวน'),1,0,'C');
     $this->Cell(30,10,iconv('UTF-8', 'cp874', 'หน่วยเรียก'),1,0,'C');
     $this->Cell(30,10,iconv('UTF-8', 'cp874', 'ราคาต่อหน่วย'),1,0,'C');
@@ -62,7 +62,8 @@ function getdt($datacheck){
     $data =$datacheck;
     while($row = $data->fetch_assoc()){
         $this->Cell(20,10,iconv('UTF-8', 'cp874', ($number++)),1,0,'C');
-        $this->Cell(30,10,iconv('UTF-8', 'cp874', $row['product_name']),1,0,'C');
+        $this->Cell(50,10,iconv('UTF-8', 'cp874', $row['product_name']),1,0,'C');
+        $this->Cell(70,10,iconv('UTF-8', 'cp874', $row['detail']),1,0,'C');
         $this->Cell(20,10,iconv('UTF-8', 'cp874', number_format( $row['amout'])),1,0,'C');
         $this->Cell(30,10,iconv('UTF-8', 'cp874', $row['unit_type']),1,0,'C');
         $this->Cell(30,10,iconv('UTF-8', 'cp874', number_format( $row['price'])),1,0,'C');
@@ -95,7 +96,7 @@ function Footer()
         }
  
 }
-$pdf = new mypdf();
+$pdf = new mypdf('L');
 $pdf->AliasNbPages();
 
 $pdf->AddPage();

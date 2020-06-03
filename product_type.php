@@ -59,7 +59,7 @@ if(!isset($_SESSION['UID'])){
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">จัดการข้อมูลประเภทสินค้า</h4>
+                        <h4 class="page-title">จัดการข้อมูลประเภทวัสดุ</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -90,7 +90,7 @@ if(!isset($_SESSION['UID'])){
  
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">ข้อมูลประเภทสินค้า <button type="button"
+                                <h5 class="card-title">ข้อมูลประเภทวัสดุ <button type="button"
                                         class="btn btn-primary  btn-sm " data-toggle='modal' data-target='#addnew'><span
                                             class="mdi mdi-note-plus"></button> </span></h5>
                                 <div class="table-responsive">
@@ -98,7 +98,7 @@ if(!isset($_SESSION['UID'])){
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>ชื่อประเภทสินค้า</th>
+                                                <th>ชื่อประเภทวัสดุ</th>
                                                 <th></th>
 
                                             </tr>
@@ -149,7 +149,7 @@ if(!isset($_SESSION['UID'])){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขประเภทสินค้า</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขประเภทวัสดุ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -161,7 +161,7 @@ if(!isset($_SESSION['UID'])){
                         <input type="text" class="form-control" id="type_id" hidden disabled>
                     </div> 
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ชื่อประเภทสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">ชื่อประเภทวัสดุ:</label>
                         <input type="text" class="form-control" id="product_edit">
 
                     </div>
@@ -180,7 +180,7 @@ if(!isset($_SESSION['UID'])){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มประเภทสินค้า</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มประเภทวัสดุ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -189,7 +189,7 @@ if(!isset($_SESSION['UID'])){
                    
                     
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ชื่อประเภทสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">ชื่อประเภทวัสดุ:</label>
                         <input type="text" class="form-control" id="product_add">
 
                     </div>

@@ -109,7 +109,7 @@ class order extends db
     public function load_order_by_id($id)
     {
         
-        $sql =' SELECT  pro.product_key,pro.product_name,pro.price,tbdt.`amout`,pro.unit_type,pro_t.type_name FROM `tb_order_details` tbdt  INNER JOIN product pro on tbdt.`product_id` = pro.product_id INNER JOIN product_type pro_t on pro.product_type = pro_t.type_ID WHERE tbdt.`order_id` = '.$id;
+        $sql =' SELECT  tbdt.product_id,pro.product_key,pro.detail,pro.product_name,pro.price,tbdt.`amout`,pro.unit_type,pro_t.type_name FROM `tb_order_details` tbdt  INNER JOIN product pro on tbdt.`product_id` = pro.product_id INNER JOIN product_type pro_t on pro.product_type = pro_t.type_ID WHERE tbdt.`order_id` = '.$id;
         db::query($sql);
         $result = db::default_data();
        
@@ -122,6 +122,12 @@ class order extends db
      $sql = "DELETE FROM `tb_order` WHERE `order_id`=".$id_order;
      db::query($sql);
         return 1 ;
+    }
+    public function delete_order_admin($id_order,$product_id)
+    {
+     $sql = "DELETE FROM `tb_order_details` WHERE `order_id`=".$id_order." and product_id=".$product_id;
+     db::query($sql);
+     return 1 ;
     }
 }
 

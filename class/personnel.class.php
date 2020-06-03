@@ -72,14 +72,31 @@ class personnel extends db
           
     }
     public function personnel_add($id_card,$name,$lastname,$username,$password,$phone,$type_ID){
-     $sql ="INSERT INTO `personnel` ( `id_card`, `name`, `lastname`, `username`, `password`,phone, `type_ID`) VALUES ('".db::real_string($id_card)."', '".db::real_string($name)."', '".db::real_string($lastname)."', '".db::real_string($username)."','".db::real_string($password)."','".db::real_string($phone)."', ".db::real_string($type_ID).")";
-        try {
-               db::query($sql);
-                
-               echo 3 ;
-           } catch (Exception $e) {
-               echo 0 ;
-           }
+        // check username 
+        $sql ="SELECT * FROM `personnel` WHERE `username`='".db::real_string($username)."'";
+        db::query($sql);
+        if( db::num_rows()>0){
+            return json_encode(array('status_t' =>'error','msg'=>'username นี้ถูกใช้งานไปแล้ว'));
+        }else{
+            $sql ="SELECT * FROM `personnel` WHERE  `id_card`='".db::real_string($id_card)."'";
+            db::query($sql);
+            if( db::num_rows()>0){
+                return json_encode(array('status' =>'error','msg'=>'รหัสบัตรประชนถูกใช้งานไปแล้ว'));
+            }else{
+                $sql = "SELECT * FROM `personnel` WHERE   `name` ='".db::real_string($name)."' and `lastname` = '".db::real_string($lastname)."'";
+                db::query($sql);
+                if( db::num_rows()>0){
+                    return json_encode(array('status' =>'error','msg'=>'มีชื่อและนามสกุลนี้มีแล้วในระบบ'));
+
+                }else{
+                    $sql ="INSERT INTO `personnel` ( `id_card`, `name`, `lastname`, `username`, `password`,phone, `type_ID`) VALUES ('".db::real_string($id_card)."', '".db::real_string($name)."', '".db::real_string($lastname)."', '".db::real_string($username)."','".db::real_string($password)."','".db::real_string($phone)."', ".db::real_string($type_ID).")";
+                    db::query($sql);
+                    return json_encode(array('status' =>'success','msg'=>'กรุณารอยื่นยันจากหัวหน้าแผนก'));
+                }
+            }
+        }
+     
+        
    }
     public function delete_id($id)
     {

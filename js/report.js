@@ -5,6 +5,24 @@ $(document).ready(function () {
        location.href="report_1.php?ORDER_ID="+data.orderid;
         
     });
+    $(document).on('click', '#delete_order', function (e) {
+        e.preventDefault();
+        let delete_order = $(this).data("product_id");
+        let obj =getvalueurl();
+        $.post("ajax/ajax_admin_delete_order.php", {
+            id_order:obj['orderid'],
+            product_id:delete_order
+        },
+            function (data) {
+                var data = getvalueurl() ;
+                location.href="order_show_dt.php?orderid="+data.orderid;
+            },
+            "JSON"
+        );
+ 
+        
+        
+    });
 });
 function getvalueurl() {
     var parts = window.location.search.substr(1).split("&");

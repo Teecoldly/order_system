@@ -58,7 +58,7 @@ if(!isset($_SESSION['UID'])){
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">จัดการข้อมูลสินค้า</h4>
+                        <h4 class="page-title">จัดการข้อมูลวัสดุ</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -89,7 +89,7 @@ if(!isset($_SESSION['UID'])){
  
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">ข้อมูลสินค้า <button type="button"
+                                <h5 class="card-title">ข้อมูลวัสดุ <button type="button"
                                         class="btn btn-primary  btn-sm " data-toggle='modal' data-target='#addnew'><span
                                             class="mdi mdi-note-plus"></button> </span></h5>
                                 <div class="table-responsive">
@@ -97,11 +97,12 @@ if(!isset($_SESSION['UID'])){
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>รหัสสินค้า</th>
-                                                <th>ชื่อสินค้า</th>
+                                                <th>รหัสวัสดุ</th>
+                                                <th>ชื่อวัสดุ</th>
+                                                <th scope="col">รายละเอียดวัสดุ</th>
                                                 <th>ราคา</th>
                                                 <th>หน่วยเรียก</th>
-                                                <th>ประเภทสินค้า</th>
+                                                <th>ประเภทวัสดุ</th>
                                                 <th></th>
 
                                             </tr>
@@ -152,7 +153,7 @@ if(!isset($_SESSION['UID'])){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขประเภทสินค้า</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขประเภทวัสดุ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -164,12 +165,16 @@ if(!isset($_SESSION['UID'])){
                         <input type="text" class="form-control" id="product_id_edit" hidden disabled>
                     </div> 
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">รหัสสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">รหัสวัสดุ:</label>
                         <input type="text" class="form-control" id="product_key_edit">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ชื่อสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">ชื่อวัสดุ:</label>
                         <input type="text" class="form-control" id="product_name_edit">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">รายละเอียด</label>
+                        <input type="text" class="form-control" id="detail_edit">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">ราคา:</label>
@@ -180,7 +185,7 @@ if(!isset($_SESSION['UID'])){
                         <input type="text" class="form-control" id="unit_type_edit">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ประเภทสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">ประเภทวัสดุ:</label>
                         <select class="custom-select" id="type_ids_edit" required>
                            
                         </select>
@@ -200,7 +205,7 @@ if(!isset($_SESSION['UID'])){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มประเภทสินค้า</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มประเภทวัสดุ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -208,11 +213,11 @@ if(!isset($_SESSION['UID'])){
                 <div class="modal-body">
                    
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">รหัสสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">รหัสวัสดุ:</label>
                         <input type="text" class="form-control" id="product_key">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ชื่อสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">ชื่อวัสดุ:</label>
                         <input type="text" class="form-control" id="product_name">
                     </div>
                     <div class="form-group">
@@ -224,7 +229,7 @@ if(!isset($_SESSION['UID'])){
                         <input type="text" class="form-control" id="unit_type">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ประเภทสินค้า:</label>
+                        <label for="recipient-name" class="col-form-label">ประเภทวัสดุ:</label>
                         <select class="custom-select" id="type_ids" required>
                            
                         </select>

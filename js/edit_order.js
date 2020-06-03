@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+    loadproduct();
     $("#send_data").click(function (e) { 
         e.preventDefault();
         var selected = {};
@@ -62,7 +62,7 @@ $(document).ready(function () {
      });
      
 });
-loadproduct();
+ 
    function loadproduct() { 
        $.post("ajax/ajax_product.php", {loadproduct:1},
            function (data) {
@@ -76,10 +76,13 @@ loadproduct();
                     table+="  </label> </td>";
                     table+="<td>"+value.product_key+"</td>";
                     table+="<td>"+value.product_name+"</td>";
+                    table+="<td>"+value.detail+"</td>";
                     table+="<td>"+value.price+"</td>";                 
-                    table += "<td> <input type='number' class='form-control' id='"+value.product_id+"' min='1' value='1'></td>";
+                    table+= "<td> <input type='number' class='form-control' id='"+value.product_id+"' min='1' value='1'></td>";
                     table+="</tr>";
                });
+               console.log(table);
+               
                $("tbody").html(table);
                $('table').DataTable();
            },

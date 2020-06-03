@@ -26,8 +26,8 @@
                      
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-paperclip"></i><span class="hide-menu">จัดการวัสดุ</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="product.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">ข้อมูลสินค้า</span></a></li>
-                                <li class="sidebar-item"><a href="product_type.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">ข้อมูลประเภทสินค้า</span></a></li>
+                                <li class="sidebar-item"><a href="product.php" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">ข้อมูลวัสดุ</span></a></li>
+                                <li class="sidebar-item"><a href="product_type.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">ข้อมูลประเภทวัสดุ</span></a></li>
                             </ul>
                         </li>
                         <?php  if($_SESSION["status_user"]==2 || $_SESSION["status_user"]==3 ){?>

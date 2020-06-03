@@ -89,7 +89,7 @@ class product extends db
     public function product_load()
     {
        
-        $sql  = "SELECT p.`product_id`, p.`product_key`, p.`product_name` ,p.price,p.unit_type,py.type_ID,py.type_name FROM `product` p INNER join 	product_type py on p.`product_type`= py.type_ID";
+        $sql  = "SELECT p.`product_id`, p.`product_key`, p.`product_name` , p.`detail`,p.price,p.unit_type,py.type_ID,py.type_name FROM `product` p INNER join 	product_type py on p.`product_type`= py.type_ID";
         db::query($sql);
         $this->result=db::default_data();
         $data = array();
@@ -105,20 +105,22 @@ class product extends db
     public function product_load_order()
     {
        
-        $sql  = "SELECT p.`product_id`, p.`product_key`, p.`product_name` ,p.price,py.type_ID,py.type_name FROM `product` p INNER join 	product_type py on p.`product_type`= py.type_ID";
+        $sql  = "SELECT p.`product_id`, p.`product_key`, p.`product_name` ,p.`detail`,p.price,py.type_ID,py.type_name FROM `product` p INNER join 	product_type py on p.`product_type`= py.type_ID";
         db::query($sql);
         return $this->result=db::default_data();
         
         
         
     }
-    public function product_edit($id,$key,$name,$price,$unit_type,$type)
+    public function product_edit($id,$key,$name,$price,$unit_type,$type,$detail)
     {
         try {
-            $sql  = "UPDATE `product` SET `product_key`='".db::real_string($key)."',`product_name`='".db::real_string($name)."',`price`='".db::real_string($price)."',unit_type='".db::real_string($unit_type)."',`product_type`=".db::real_string($type)." WHERE  `product_id`=".db::real_string($id)."";
+ 
+            $sql  = "UPDATE `product` SET `product_key`='".db::real_string($key)."',`product_name`='".db::real_string($name)."',`price`='".db::real_string($price)."',unit_type='".db::real_string($unit_type)."',`product_type`=".db::real_string($type).",`detail`='".db::real_string($detail)."'  WHERE  `product_id`=".db::real_string($id)."";
     
             db::query($sql);
             echo 2;
+  
         } catch (Exception  $e) {
             echo 0;
         }

@@ -17,13 +17,19 @@ function loadorder() {
                 table+="<td>"+(i++)+"</td>";
                 table+="<td>#P" +value.order+"</td>";
                 if(value.name == null){
-                    table+='<td><span class="badge badge-danger">การสั่งซื้อยังไม่ถูกยืนยัน</span></td>';
+                    table+='<td><span class="badge badge-danger">การขอซื้อยังไม่ถูกยืนยัน</span></td>';
                 }else{
                     table+='<td><span class="badge badge-success">'+value.name+'</span></td>';
                 }
                 table+="<td>"+value.time_admin+"</td>";
             
-                table+="<td> <a  class='btn btn-info  btn-sm ml-1' href='order_show_dt.php?orderid="+value.order+"'>แสดง</a> </td>"
+                table+="<td> <a  class='btn btn-info  btn-sm ml-1' href='order_show_dt.php?orderid="+value.order+"'>แสดง</a>"
+                if(value.name==null){
+                    table+="  <a  class='btn btn-warning  btn-sm ml-1' href='edit_order.php?orderid="+value.order+"'>แก้ไข</a>" 
+                }else{
+                    table+="</td>"
+                }
+                
                 
                
                  
@@ -46,17 +52,23 @@ function loadtableadmin() {
               
              
              $.each(data, function (index, value) { 
+                 let text ="";
                 table += "<tr>";
                 table += "<td>"+(i++)+"</td>";
                 table += "<td>#P"+(value.order_id)+"</td>";
                 table += "<td>"+(value.name)+"</td>";
                 table += "<td>"+(value.time)+"</td>";
                 table += "<td>"+(value.time_admin)+"</td>";
-                table+="<td> <a  class='btn btn-info  btn-sm ml-1' href='order_show_dt.php?orderid="+value.order_id+"'>แสดง</a> </td>"
-                if(value.admin_check != null){
-                    table += "<td> <button type='button' class='btn btn-danger  btn-sm' id ='edit_order'   data-id='" + value.order_id+ "'>ยกเลิก</button></td>";
+                if(value.admin_check==null){
+                    text="&check=0"
                 }else{
-                    table += "<td> <button type='button' class='btn btn-success   btn-sm' id ='summit_order'   data-id='" + value.order_id+ "'>ยื่นยัน</button></td>";
+                    text="&check=1"
+                }
+                table+="<td> <a  class='btn btn-info  btn-sm ml-1' href='order_show_dt.php?orderid="+value.order_id+text +"'>แสดง</a> </td>"
+                if(value.admin_check != null){
+                    table += "<td> <button type='button' class='btn btn-danger  btn-sm' id ='edit_order'   data-id='" + value.order_id+ "'>ไม่อนุมัติ</button></td>";
+                }else{
+                    table += "<td> <button type='button' class='btn btn-success   btn-sm' id ='summit_order'   data-id='" + value.order_id+ "'>อนุมัติ</button></td>";
                 
                 }
                
@@ -76,12 +88,12 @@ function loadtableadmin() {
         var id_order = $(this).attr('data-id');
         Swal.fire({
            title: 'คุณแน่ใจหรือ?',
-           text: "คุณแน่ใจที่จะยกเลิกรายการสั้งซื้อหมายเลข #P"+id_order,
+           text: "คุณแน่ใจที่จะยกเลิกรายการขอซื้อหมายเลข #P"+id_order,
            icon: 'warning',
            showCancelButton: true,
            confirmButtonColor: '#3085d6',
            cancelButtonColor: '#d33',
-           confirmButtonText: 'ยกเลิกรายการสั่งซื้อ',
+           confirmButtonText: 'ยกเลิกรายการขอซื้อ',
            cancelButtonText:'ปิด'
 
          }).then((result) => {
@@ -93,7 +105,7 @@ function loadtableadmin() {
                        if(data==1){
                               Swal.fire(
                                'บันทึก',
-                               'บันทึกการยกเลิกกาสั่งซื้อ #P'+ id_order+'เรียบร้อยแล้ว ',
+                               'บันทึกการยกเลิกกาขอซื้อ #P'+ id_order+'เรียบร้อยแล้ว ',
                                'success'
                            )
                            location.href="index.php";
@@ -111,12 +123,12 @@ function loadtableadmin() {
         var id_order = $(this).attr('data-id');
          Swal.fire({
             title: 'คุณแน่ใจหรือ?',
-            text: "คุณแน่ใจที่จะยื่นยันรายการสั้งซื้อหมายเลข #P"+id_order,
+            text: "คุณแน่ใจที่จะยื่นยันรายการขอซื้อหมายเลข #P"+id_order,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'ยื่นยันรายการสั่งซื้อ',
+            confirmButtonText: 'ยื่นยันรายการขอซื้อ',
             cancelButtonText:'ยกเลิก'
  
           }).then((result) => {
@@ -128,7 +140,7 @@ function loadtableadmin() {
                         if(data==1){
                                Swal.fire(
                                 'บันทึก',
-                                'บันทึกการยื่นยันกาสั่งซื้อ #P'+ id_order+'เรียบร้อยแล้ว ',
+                                'บันทึกการยื่นยันกาขอซื้อ #P'+ id_order+'เรียบร้อยแล้ว ',
                                 'success'
                             )
                             location.href="index.php";

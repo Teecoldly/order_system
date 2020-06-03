@@ -11,7 +11,7 @@ if(isset($_POST['ID'])){
 
 }else if(isset($_POST['addnew_id'])){
    
-    return $PERSONNEL-> personnel_add($_POST['id_card'],$_POST['name'],$_POST['Lastname'],$_POST['username'],$_POST['password'],$_POST['phone'],$_POST['type_id']);
+    echo $PERSONNEL-> personnel_add($_POST['id_card'],$_POST['name'],$_POST['Lastname'],$_POST['username'],$_POST['password'],$_POST['phone'],$_POST['type_id']);
 
 }else if(isset($_POST['allow'])){
     echo $PERSONNEL->update_permission($_POST['personnel_id']);

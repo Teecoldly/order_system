@@ -25,11 +25,12 @@ $(document).ready(function () {
                      table+="<td>"+(i++)+"</td>";
                      table+="<td>"+value.product_key+"</td>";
                      table+="<td>"+value.product_name+"</td>";
+                     table+="<td>"+value.detail+"</td>";
                      table+="<td>"+value.price+"</td>";
                      table+="<td>"+value.unit_type+"</td>";
                      table+="<td>"+value.type_name+"</td>";
                  
-                     table += "<td> <button type='button' class='btn btn-warning  btn-sm ml-1' id='edit_data' data-toggle='modal' data-target='#edit_data_modal' data-id='" + value.product_id + "' data-product_key='"+value.product_key+"' data-product_name='"+value.product_name+"' data-price='"+value.price+"' data-unit_type='"+value.unit_type+"' data-type_ID='"+value.type_ID+"'>แก้ไข</button>   " +
+                     table += "<td> <button type='button' class='btn btn-warning  btn-sm ml-1' id='edit_data' data-toggle='modal' data-target='#edit_data_modal' data-id='" + value.product_id + "' data-detail='"+value.detail+"' data-product_key='"+value.product_key+"' data-product_name='"+value.product_name+"' data-price='"+value.price+"' data-unit_type='"+value.unit_type+"' data-type_ID='"+value.type_ID+"'>แก้ไข</button>   " +
                     "<button type='button' class='btn btn-dark  btn-sm' id ='delete_id'   data-id='" + value.product_id + "'>ลบ</button>" +
                     "</td>";
                      table+="</tr>";
@@ -49,12 +50,14 @@ $(document).ready(function () {
       var product_type= $(this).attr('data-type_id');
       var unit_type = $(this).attr('data-unit_type'); 
       var price =  $(this).attr('data-price');
+      var detail =  $(this).attr('data-detail');
       $("#product_id_edit").val(product_id);
       $("#product_key_edit").val(product_key);
       $("#product_name_edit").val(product_name);
       $("#product_price_edit").val(price);
       $("#type_ids_edit").val(product_type);
       $("#unit_type_edit").val(unit_type);
+      $("#detail_edit").val(detail);
      });
     $("#product_add").click(function (e) { 
         e.preventDefault();
@@ -109,7 +112,8 @@ $(document).ready(function () {
       var price = $("#product_price_edit").val();
       var unit_type= $("#unit_type_edit").val();
       var type_id= $("#type_ids_edit").val();
-      $.post("ajax/ajax_product.php", {Edit_id:id,product_key:key,product_name:name,price:price,unit_type:unit_type,product_type:type_id},
+      var detail= $("#detail_edit").val();
+      $.post("ajax/ajax_product.php", {Edit_id:id,product_key:key,product_name:name,price:price,unit_type:unit_type,product_type:type_id,detail:detail},
         function (data) {
           $.post("ajax/status.php", {
             PAGE: "product",

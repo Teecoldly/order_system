@@ -45,56 +45,57 @@ class db
         return $this->con->real_escape_string($text);
     }
     public function date_facebookformat($datetime){
-        $timestamp  = $datetime ;
-        $diff       = time() - $timestamp;
+        $text = $this->date_thaiformat( $datetime);
+        // $timestamp  = $datetime ;
+        // $diff       = time() - $timestamp;
 
-        $periods    = array('วินาที','นาที','ชั่วโมง');
-        $words      = 'ที่แล้ว';
+        // $periods    = array('วินาที','นาที','ชั่วโมง');
+        // $words      = 'ที่แล้ว';
 
-        if($diff < 10){
-            $text   = "เมื่อสักครู่";
-        }
-        else if($diff < 60){
-            $i      = 0;
-            $diff   = ($diff == 1)?"":$diff;
-            $text   = "$diff $periods[$i]$words";
-        }
-        else if($diff < 3600){
-            $i      = 1;
-            $diff   = round($diff/60);
-            // $diff   = ($diff == 3 || $diff == 4)?"":$diff;
-            $text   = "$diff $periods[$i]$words";
-        }
-        else if($diff < 86400){
-            // 1 Day
-            $i      = 2;
-            $diff   = round($diff/3600);
-            $diff   = ($diff != 1)?$diff:"" . $diff ;
-            $text   = "$diff $periods[$i]$words";
-        }
-        else if($diff < 432000){
-            // 5 Day
-            $diff   = round($diff/86400);
-            $text   = $diff.' วันที่แล้ว';
-        }
-        else{
-            $thMonth = array('ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.');
+        // if($diff < 10){
+        //     $text   = "เมื่อสักครู่";
+        // }
+        // else if($diff < 60){
+        //     $i      = 0;
+        //     $diff   = ($diff == 1)?"":$diff;
+        //     $text   = "$diff $periods[$i]$words";
+        // }
+        // else if($diff < 3600){
+        //     $i      = 1;
+        //     $diff   = round($diff/60);
+        //     // $diff   = ($diff == 3 || $diff == 4)?"":$diff;
+        //     $text   = "$diff $periods[$i]$words";
+        // }
+        // else if($diff < 86400){
+        //     // 1 Day
+        //     $i      = 2;
+        //     $diff   = round($diff/3600);
+        //     $diff   = ($diff != 1)?$diff:"" . $diff ;
+        //     $text   = "$diff $periods[$i]$words";
+        // }
+        // else if($diff < 432000){
+        //     // 5 Day
+        //     $diff   = round($diff/86400);
+        //     $text   = $diff.' วันที่แล้ว';
+        // }
+        // else{
+        //     $thMonth = array('ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.');
 
-            $date   = date("d", $timestamp);
-            $month  = $thMonth[date("m", $timestamp)-1];
-            $y      = (date("Y", $timestamp)+543)-2500;
-            $t1     = "$date  $month";
-            $t2     = "$date  $month  $y";
+        //     $date   = date("d", $timestamp);
+        //     $month  = $thMonth[date("m", $timestamp)-1];
+        //     $y      = (date("Y", $timestamp)+543)-2500;
+        //     $t1     = "$date  $month";
+        //     $t2     = "$date  $month  $y";
 
-            // if($timestamp < strtotime(date("Y-01-01 00:00:00"))){
-            //     $text = $t2;
-            // }
-            // else{
-            //     $text = $t1;
-            // }
+        //     // if($timestamp < strtotime(date("Y-01-01 00:00:00"))){
+        //     //     $text = $t2;
+        //     // }
+        //     // else{
+        //     //     $text = $t1;
+        //     // }
 
-            $text = $t2;
-        }
+        //     $text = $t2;
+        // }
         return $text;
     }
     public function shortdate_thaiformat($datetime){

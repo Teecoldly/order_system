@@ -103,10 +103,11 @@ if(!isset($_GET['orderid'])){
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </th>
-                                            <th scope="col">รหัสสินค้า</th>
-                                            <th scope="col">ชื่อสินค้า</th>
-                                            <th scope="col">ราคาสินค้า</th>
-                                            <th scope="col">จำนวนสินค้า</th>
+                                            <th scope="col">รหัสวัสดุ</th>
+                                            <th scope="col">ชื่อสิวัสดุ</th>
+                                            <th scope="col">รายละเอียดวัสดุ</th>
+                                            <th scope="col">ราคาวัสดุ</th>
+                                            <th scope="col">จำนวนวัสดุ</th>
                                         </tr>
                                     </thead>
                                     <tbody class="customtable">
@@ -115,7 +116,7 @@ if(!isset($_GET['orderid'])){
                                     <tfoot>
                                         <tr>
 
-                                            <th colspan="5">
+                                            <th colspan="6">
                                                 <div class="row mb-3">
                                                     <div class="col-lg-10">
 

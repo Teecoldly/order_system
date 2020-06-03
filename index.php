@@ -115,16 +115,16 @@ date_default_timezone_set("Asia/Bangkok");
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">รายการสั่งซื้อ</span></h5>
+                                <h5 class="card-title">รายการขอซื้อ</span></h5>
                                 <div class="table-responsive">
                                     <table id="admin_order" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>รหัสการสั่งซื้อ</th>
+                                                <th>รหัสการขอซื้อ</th>
                                                 <th>ชื่อ-นามสกุล</th>
-                                                <th>วันที่ร้องขอคำร้อง</th>
-                                                <th>วันที่ยืนยันคำขอคำร้อง</th>
+                                                <th>วันที่ส่งคำขอซื้อ</th>
+                                                <th>วันที่อนุมัติคำขอซื้อ</th>
                                                 <th>รายละเอียด</th>
                                                 <th>การยืนยัน</th>
                                              
@@ -145,14 +145,14 @@ date_default_timezone_set("Asia/Bangkok");
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">การอนุมัติการสั่งซื้อ </span></h5>
+                                <h5 class="card-title">การอนุมัติการขอซื้อ</span></h5>
                                 <div class="table-responsive">
                                     <table id="history" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>รหัสการสั่งซื้อ</th>
-                                                <th>ยืนยันการสั่งซื้อ</th>
+                                                <th>รหัสการขอซื้อ</th>
+                                                <th>ยืนยันการขอซื้อ</th>
                                                 <th>วันเวลา</th>
                                                 <th>ดูรายละเอียด</th>
                                             </tr>

@@ -109,10 +109,11 @@ $_SESSION['teach_id']=$_GET['teach_id'];
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </th>
-                                            <th scope="col">รหัสสินค้า</th>
-                                            <th scope="col">ชื่อสินค้า</th>
-                                            <th scope="col">ราคาสินค้า</th>
-                                            <th scope="col">จำนวนสินค้า</th>
+                                            <th scope="col">รหัสวัสดุ</th>
+                                            <th scope="col">ชื่อวัสดุ</th>
+                                            <th scope="col">รายละเอียดวัสดุ</th>
+                                            <th scope="col">ราคาวัสดุ</th>
+                                            <th scope="col">จำนวนวัสดุ</th>
                                         </tr>
                                     </thead>
                                     <tbody class="customtable">

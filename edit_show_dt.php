@@ -112,15 +112,16 @@ include_once("autoload.php");
                                 </div>
                             
                                 <div class="col-md-12">
-                                <center><h4 class="font-bold">รายการสั่งซื้อ #P<?php echo $_SESSION["edit_order_id"];?></h4></center>
+                                <center><h4 class="font-bold">รายการสั่งขอซื้อ #P<?php echo $_SESSION["edit_order_id"];?></h4></center>
                                     <div class="table-responsive m-t-40" style="clear: both;">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">รายการ</th>
-                                                    <th class="text-center">รหัสสินค้า</th>
-                                                    <th>ชื่อสินค้า</th>
-                                                    <th class="text-right">ราคาสินค้า</th>
+                                                    <th class="text-center">รหัสวัสดุ</th>
+                                                    <th class="text-center">ชื่อวัสดุ</th>
+                                                    <th class="text-center">รายละเอียด</th>
+                                                    <th class="text-right">ราคาวัสดุ</th>
                                                     <th class="text-right">จำนวน</th>
                                                     <th class="text-right">ราคาสุทธิ</th>
                                                 </tr>
@@ -141,7 +142,8 @@ include_once("autoload.php");
                                                 <tr>
                                                     <td class="text-center"><?php echo($i++) ?></td>
                                                     <td class="text-center"><?php echo($row["product_key"]) ?></td>
-                                                    <td><?php echo($row["product_name"]) ?></td>
+                                                    <td class="text-center"><?php echo($row["product_name"]) ?></td>
+                                                    <td class="text-center"><?php echo(($row["detail"]=='' ? 'null':$row["detail"])) ?></td>
                                                     <td class="text-right"><?php echo($row["price"]) ?></td>
                                                     <td class="text-right"> <?php echo(number_format($array[$row["product_id"]] ))?> </td>
                                                     <td class="text-right"> <?php echo(number_format($row["price"]*$array[$row["product_id"]],2) ) ?></td>
@@ -162,8 +164,8 @@ include_once("autoload.php");
                                     <hr>
                                 
                                     <div class="text-right">
-                                    <button class="btn btn-warning" type="submit" id="id_cancel_order"> ยกเลิกแก้ไขคำสั่งซื้อ </button>
-                                        <button class="btn btn-danger" type="submit" id="id_submit_order"> ยื่นยันแก้ไขคำสั่งซื้อ </button>
+                                    <button class="btn btn-warning" type="submit" id="id_cancel_order"> ยกเลิกแก้ไขคำขอซื้อ </button>
+                                        <button class="btn btn-danger" type="submit" id="id_submit_order"> ยื่นยันแก้ไขคำขอซื้อ </button>
                                     </div>
                                 </div>
                             </div>

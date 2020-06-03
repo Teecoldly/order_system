@@ -73,6 +73,7 @@ loadproduct();
                      table+="  </label> </td>";
                      table+="<td>"+value.product_key+"</td>";
                      table+="<td>"+value.product_name+"</td>";
+                     table+="<td>"+value.detail+"</td>";
                      table+="<td>"+value.price+"</td>";                 
                      table += "<td> <input type='number' class='form-control' id='"+value.product_id+"' min='1' value='1'></td>";
                      table+="</tr>";

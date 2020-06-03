@@ -58,7 +58,7 @@ if(!isset($_SESSION['UID'])){
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">ประวัติการสั่งซื้อ</h4>
+                        <h4 class="page-title">ประวัติการขอซื้อ</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -90,7 +90,7 @@ if(!isset($_SESSION['UID'])){
  
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">การสั่งซื้อ <button type="button"
+                                <h5 class="card-title">การขอซื้อ <button type="button"
                                         class="btn btn-primary  btn-sm" id ="addnew"><span
                                             class="mdi mdi-note-plus"></button> </span></h5>
                                 <div class="table-responsive">
@@ -98,10 +98,10 @@ if(!isset($_SESSION['UID'])){
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>รหัสใบสั่งซื้อ</th>
+                                                <th>รหัสใบขอซื้อ</th>
                                                  
-                                                <th>วันเวลาออกบอกใบสั้งซื้อ</th>
-                                                <th>ผู้ยืนยันการสั่งซื้อ</th>
+                                                <th>วันเวลาออกใบขอซื้อ</th>
+                                                <th>ผู้ยืนยันการขอซื้อ</th>
                                                 <th>ดูรายละเอียด</th>
                                                 <th></th>
 

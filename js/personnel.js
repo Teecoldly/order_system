@@ -14,13 +14,18 @@ $(document).ready(function () {
 
     }).then((result) => {
       if (result.value) {
-        $.post("ajax/ajax_personnel.php",{allow:1,personnel_id:personnel_id},
-          function (data ) {
+        $.post("ajax/ajax_personnel.php", {
+            allow: 1,
+            personnel_id: personnel_id
+          },
+          function (data) {
             loaddatatable();
-          } 
+          }
         );
-    }})
+      }
+    })
   });
+
   function loaddatatable() {
     $.post("ajax/ajax_personnel.php",
       function (data) {
@@ -44,16 +49,16 @@ $(document).ready(function () {
           } else {
             table += "<td> <span class='badge badge-pill badge-warning'>หัวหน้าแผนก</span></td>";
           }
-          if(value.permission==0){
+          if (value.permission == 0) {
             table += "<td> <button type='button' id='Allowid' class='btn btn-success  btn-sm ml-1'   data-id='" + value.personnel_id + "' >อนุญาติเข้าสู่ระบบ</button>   " +
-            "<button type='button' class='btn btn-dark  btn-sm' id ='delete_id'   data-id='" + value.personnel_id + "'>ลบ</button>" +
-            "</td>";
-          }else{
+              "<button type='button' class='btn btn-dark  btn-sm' id ='delete_id'   data-id='" + value.personnel_id + "'>ลบ</button>" +
+              "</td>";
+          } else {
             table += "<td> <button type='button' id='edit_data' class='btn btn-warning  btn-sm ml-1' data-toggle='modal' data-target='#editdata' data-id='" + value.personnel_id + "' >แก้ไข</button>   " +
-            "<button type='button' class='btn btn-dark  btn-sm' id ='delete_id'   data-id='" + value.personnel_id + "'>ลบ</button>" +
-            "</td>";
+              "<button type='button' class='btn btn-dark  btn-sm' id ='delete_id'   data-id='" + value.personnel_id + "'>ลบ</button>" +
+              "</td>";
           }
-        
+
 
           table += "</tr>";
 
@@ -197,7 +202,7 @@ $(document).ready(function () {
                   })
                   loaddatatable();
 
-                }else if(data =="ลบไม่ได้เนื่องจากมีบันทึกข้อมูลในระบบแล้วจึงไม่อนุญาติให้ลบ"){
+                } else if (data == "ลบไม่ได้เนื่องจากมีบันทึกข้อมูลในระบบแล้วจึงไม่อนุญาติให้ลบ") {
                   Swal.fire({
                     icon: 'error',
                     title: 'ลบข้อมูล',
@@ -225,7 +230,7 @@ $(document).ready(function () {
     var username = $("#username_add").val();
     var password = $("#password_add").val();
     var phone = $("#phone_add").val();
- 
+
     if (id_card.length != 13) {
       Swal.fire({
         icon: 'error',
@@ -242,48 +247,43 @@ $(document).ready(function () {
 
     } else {
       $.post("ajax/ajax_personnel.php", {
-        addnew_id: 1,
-        id_card: id_card,
-        name: name,
-        Lastname: Lastname,
-        username: username,
-        phone: phone,
-        password: password,
-        type_id: 2
-      }, function (data) {
+          addnew_id: 1,
+          id_card: id_card,
+          name: name,
+          Lastname: Lastname,
+          username: username,
+          phone: phone,
+          password: password,
+          type_id: 2
+        },
+        function (data) {
+          if (data.status == 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'การดำเนินการ',
+              text: data.msg,
 
-        $.post("ajax/status.php", {
-            PAGE: "personnel",
-            ERROR: data
-          },
-          function (data) {
-            if (data == "เพิ่มข้อมูลใหม่สำเร็จ") {
-              Swal.fire({
-                icon: 'success',
-                title: 'เพิ่มข้อมูล',
-                text: "กรุณารอยื่นยันจากหัวหน้าแผนก",
-
-              })
+            }).then((result) => {
               $('#addnew').modal('toggle');
-              loaddatatable();
+
               $("#id_card_add").val("");
               $("#name_add").val("");
               $("#Lastname_add").val("");
               $("#username_add").val("");
               $("#password_add").val("");
-              $("#phone").val("");
- 
-            }else{
-              Swal.fire({
-                icon: 'ERROR',
-                title: 'เพิ่มข้อมูล',
-                text: "กรุณาสมัครใหม่อีกครั้ง",
+              $("#phone_add").val("");
+            })
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'การดำเนินการ',
+              text: data.msg,
 
-              })
-            }
+            })
           }
-        );
-      });
+        },
+        "JSON"
+      );
     }
   });
 });

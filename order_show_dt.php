@@ -118,11 +118,17 @@ include_once("autoload.php");
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">รายการ</th>
-                                                    <th class="text-center">รหัสสินค้า</th>
-                                                    <th>ชื่อสินค้า</th>
-                                                    <th class="text-right">ราคาสินค้า</th>
+                                                    <th class="text-center">รหัสวัสดุ</th>
+                                                     <th class="text-center">ชื่อวัสดุ</th>
+                                                     <th class="text-center">รายละเอียดวัสดุ</th>
+                                                    <th class="text-right">ราคาวัสดุ</th>
                                                     <th class="text-right">จำนวน</th>
-                                                    <th class="text-right">ราคาสุทธิ</th>
+                                                    <th class="text-right">ราคาวัสดุ</th>
+                                                    <?php  if($_SESSION["status_user"]==3 and   @$_GET["check"] == 0 ) {?>
+                                                       <?php if(isset( $_GET["check"])){?>
+                                                        <th class="text-center">ลบ</th>
+                                                        <?php } ?>
+                                                    <?php } ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -143,10 +149,16 @@ include_once("autoload.php");
                                                 <tr>
                                                     <td class="text-center"><?php echo($i++) ?></td>
                                                     <td class="text-center"><?php echo($row["product_key"]) ?></td>
-                                                    <td><?php echo($row["product_name"]) ?></td>
+                                                      <td class="text-center"><?php echo($row["product_name"]) ?></td>
+                                                      <td class="text-center"><?php echo(($row["detail"]=='' ? 'null':$row["detail"])) ?></td>
                                                     <td class="text-right"><?php echo($row["price"]) ?></td>
                                                     <td class="text-right"> <?php echo(number_format($row["amout"])) ?>  </td>
                                                     <td class="text-right"> <?php echo(number_format($row["amout"]*$row["price"],2)) ?>  </td>
+                                                    <?php  if($_SESSION["status_user"]==3 and  @ $_GET["check"] == 0 ) {?>
+                                                       <?php if(isset( $_GET["check"])){?>
+                                                        <td class="text-center">  <a href="#" data-product_id="<?php echo($row["product_id"]) ?>" id="delete_order" class="stretched-link">X</a></td>
+                                                      <?php  }?>
+                                                      <?php  }?>
                                                 </tr>
                                                <?php    }?>
                                             </tbody>
