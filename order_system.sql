@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2020 at 08:28 PM
+-- Generation Time: Jun 05, 2020 at 06:57 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -45,18 +45,8 @@ CREATE TABLE `personnel` (
 --
 
 INSERT INTO `personnel` (`personnel_id`, `id_card`, `name`, `lastname`, `username`, `password`, `phone`, `type_ID`, `permission`) VALUES
-(1, '1234567890123', 'teecoldly', 'thegame', 'admin', 'admin', '0883829183', 1, 1),
 (7, '1009001899001', 'Test', 'KKK', '59091', '59091', '', 3, 1),
-(12, '1234567890324', '12345678903242', '12345678903242', '12345678903242', '12345678903242', '1234567890', 2, 1),
-(13, '1234567890324', '12345678903241', '12345678903241', '12345678903241', '12345678903241', '1234567890', 2, 1),
-(14, '1123123412345', 'อณิรุต', 'ศรีวิรัช', 'teecoldly', 'love4542', '0818291341', 2, 1),
-(15, '1234567891234', '1234567891234', '1234567891234', '1234567891234', '1234567891234', '1234567891', 2, 0),
-(19, '1234567890192', 'teecoldly', 'thegame', 'love4542', 'bigbang4542', '1111111111', 2, 1),
-(20, '1234567890123', '59091', '59091', '59091', '59091', '0888293042', 2, 0),
-(21, '1009001899002', '1009001899001', '1009001899001', '1009001899001', '1009001899001', '1009001899', 2, 0),
-(22, '1231412415111', '1231412415111', '1231412415111', '1231412415111', '1231412415111', '1231412415', 2, 0),
-(23, '1234511234567', '33412314124121', '33412314124121', '33412314124121', '33412314124121', '1234511234', 2, 0),
-(24, '1245556612312', '1245556612312', '1245556612312', '1245556612312', '1245556612312', '1245556612', 2, 0);
+(14, '1123123412345', 'อณิรุต', 'ศรีวิรัช', 'teecoldly', 'love4542', '0818291341', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -68,7 +58,7 @@ CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `product_key` text COLLATE utf8_unicode_ci NOT NULL,
   `product_name` text COLLATE utf8_unicode_ci NOT NULL,
-  `detail` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `detail` text COLLATE utf8_unicode_ci DEFAULT '',
   `price` double NOT NULL,
   `unit_type` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'หน่วยเรียก',
   `product_type` int(11) NOT NULL
@@ -79,17 +69,18 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_key`, `product_name`, `detail`, `price`, `unit_type`, `product_type`) VALUES
-(1, '124121', 'อะไรสะอย่าง', NULL, 5555, '1', 2),
+(1, '124121', 'อะไรสะอย่าง', '', 5555, '1', 2),
 (2, '12415', '12412', NULL, 0, 'xxxx', 2),
 (3, '1213', '123123', 'nullxxx', 0, 'xx', 2),
 (5, 'erer', 'wrwrw', 'null', 25567, 'xx', 3),
 (7, '2', '2', NULL, 2, 'xxxx', 2),
 (8, '13x', '11', 'null', 111, 'xx', 2),
 (9, '1', '1', 'null', 1, 'xx', 2),
-(10, '1231', '123123', NULL, 12312, 'xxx', 2),
+(10, '1231', '123123', 'ปปป', 12312, 'xxx', 2),
 (12, '123123', '123123', NULL, 123123, '123', 2),
 (17, 'xd', 'xd', NULL, 123, 'xd', 2),
-(18, '12312312', '3123123', NULL, 123123123, '12312312', 6);
+(18, '12312312', '3123123', NULL, 123123123, '12312312', 6),
+(19, '123', '1231', '', 12, '12412', 2);
 
 -- --------------------------------------------------------
 
@@ -174,7 +165,8 @@ CREATE TABLE `tb_order` (
 INSERT INTO `tb_order` (`order_id`, `teach_id`, `status_admin_id`, `timelog`, `admin_summit_order`) VALUES
 (11, 5, NULL, 1581231685, NULL),
 (13, 19, NULL, 1581337724, NULL),
-(14, 21, 7, 1591201807, 1591205800);
+(14, 21, 7, 1591201807, 1591205800),
+(19, 22, NULL, 1591332856, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,9 +187,9 @@ CREATE TABLE `tb_order_details` (
 
 INSERT INTO `tb_order_details` (`details_id`, `order_id`, `product_id`, `amout`) VALUES
 (7, 11, 7, 1),
-(12, 13, 8, 4),
-(13, 13, 17, 4),
-(27, 14, 3, 1);
+(27, 14, 3, 1),
+(32, 19, 10, 13),
+(33, 19, 12, 13);
 
 -- --------------------------------------------------------
 
@@ -222,7 +214,8 @@ INSERT INTO `teach` (`teach_id`, `semester_code`, `subject_id`, `personnel_id`) 
 (18, '2/2564', '124 ', 14),
 (19, '2/2564', '1234 ', 14),
 (20, '2/2564', '1 ', 14),
-(21, '2/2564', '1 ', 7);
+(21, '2/2564', '1 ', 7),
+(22, '2/2564', '124 ', 7);
 
 --
 -- Indexes for dumped tables
@@ -295,7 +288,7 @@ ALTER TABLE `personnel`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -307,19 +300,19 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tb_order_details`
 --
 ALTER TABLE `tb_order_details`
-  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `teach`
 --
 ALTER TABLE `teach`
-  MODIFY `teach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `teach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
