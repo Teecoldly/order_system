@@ -15,7 +15,13 @@ $(document).ready(function () {
         },
             function (data) {
                 var data = getvalueurl() ;
-                location.href="order_show_dt.php?orderid="+data.orderid;
+                if(typeof data.check =="undefined"){
+                    location.href="order_show_dt.php?orderid="+data.orderid;
+                }else{
+                    location.href="order_show_dt.php?orderid="+data.orderid+"&check="+data.check;
+                }
+                
+
             },
             "JSON"
         );

@@ -1,5 +1,6 @@
 $(document).ready(function () {
     loadproduct();
+    load_history();
     $("#send_data").click(function (e) { 
         e.preventDefault();
         var selected = {};
@@ -71,17 +72,17 @@ $(document).ready(function () {
                $.each(data.data, function (index, value) { 
                     table+="<tr>";
                     table+="<td> <label class='customcheckbox'>";
-                    table+="<input type='checkbox' id='selectproduct' class='listCheckbox' value='"+value.product_id+"'/>";
+                    table+="<input type='checkbox' id='selectproduct' class='listCheckbox' value='"+value.product_id+"' data-checkid_id='"+value.product_id+"'/>";
                     table+="<span class='checkmark'></span>";
                     table+="  </label> </td>";
                     table+="<td>"+value.product_key+"</td>";
                     table+="<td>"+value.product_name+"</td>";
                     table+="<td>"+value.detail+"</td>";
                     table+="<td>"+value.price+"</td>";                 
-                    table+= "<td> <input type='number' class='form-control' id='"+value.product_id+"' min='1' value='1'></td>";
+                    table+= "<td> <input type='number' class='form-control' id='"+value.product_id+"' min='1' value='1' data-checkid_id='"+value.product_id+"'></td>";
                     table+="</tr>";
                });
-               console.log(table);
+       
                
                $("tbody").html(table);
                $('table').DataTable();
@@ -89,6 +90,46 @@ $(document).ready(function () {
            "JSON"
        );
        
+    }
+    function load_history(){
+        let data = getvalueurl();
+        
+        $.post("ajax/ajax_history_order.php", {load_histroy_order:data.orderid},
+            function (data) {
+      
+                $.each(data.data, function (index, value) { 
+                    console.log(value);
+                    $("input[type=checkbox]").each(function () {
+                     
+                        
+                        let master=$(this).data("checkid_id");
+                       console.log(master);
+                       
+                        if(master ==value.product_id){
+                       
+                      
+                            
+                          $(this).prop('checked', true);
+                        }
+                        
+                    });
+                    $("input[type=number]").each(function () {
+                      let master=$(this).data("checkid_id");
+                    
+                     
+                      
+                      if(master == value.product_id){
+                        
+                         $(this).val(value.amout);
+                      }
+                  });
+                });
+            
+                
+             
+            },
+            "JSON"
+        );
     }
     function getvalueurl() {
         var parts = window.location.search.substr(1).split("&");

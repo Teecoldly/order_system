@@ -65,9 +65,9 @@ $(document).ready(function () {
         var product_name =$("#product_name").val();
         var unit_type =$("#unit_type").val();
         var type_ids =$("#type_ids").val();
-        
+        var detail =$("#detail_add").val();
         var price =  $("#product_price").val();
-        $.post("ajax/ajax_product.php", {product_add_new:product_key,product_name:product_name,price:price,unit_type:unit_type,type_ids:type_ids},
+        $.post("ajax/ajax_product.php", {product_add_new:product_key,product_name:product_name,price:price,unit_type:unit_type,type_ids:type_ids,detail:detail},
             function (data) {
                 $.post("ajax/status.php", {
                     PAGE: "product",

@@ -10,7 +10,7 @@ else if(isset($_POST["delete_id"])){
     echo $PRODUCT->product_type_delete($_POST["delete_id"]);
 }
 else if(isset($_POST["product_add_new"])){
-    echo $PRODUCT->product_add($_POST["product_add_new"],$_POST["product_name"],$_POST["price"],$_POST["unit_type"],$_POST["type_ids"]);
+    echo $PRODUCT->product_add($_POST["product_add_new"],$_POST["product_name"],$_POST["price"],$_POST["unit_type"],$_POST["type_ids"],$_POST["detail"]);
 }
 else if(isset($_POST["loadproduct"])){
      $PRODUCT->product_load();

@@ -123,7 +123,8 @@ include_once("autoload.php");
                                                 <tr>
                                                     <th class="text-center">รายการ</th>
                                                     <th class="text-center">รหัสสินค้า</th>
-                                                    <th>ชื่อสินค้า</th>
+                                                    <th class="text-center">ชื่อสินค้า</th>
+                                                    <th class="text-center">รายละเอียดวัสดุ</th>
                                                     <th class="text-right">ราคาสินค้า</th>
                                                     <th class="text-right">จำนวน</th>
                                                     <th class="text-right">ราคาสุทธิ</th>
@@ -145,7 +146,8 @@ include_once("autoload.php");
                                                 <tr>
                                                     <td class="text-center"><?php echo($i++) ?></td>
                                                     <td class="text-center"><?php echo($row["product_key"]) ?></td>
-                                                    <td><?php echo($row["product_name"]) ?></td>
+                                                    <td class="text-center"><?php echo($row["product_name"]) ?></td>
+                                                    <td class="text-center"><?php echo($row["detail"]) ?></td>
                                                     <td class="text-right"><?php echo($row["price"]) ?></td>
                                                     <td class="text-right"> <?php echo(number_format($array[$row["product_id"]] ))?> </td>
                                                     <td class="text-right"> <?php echo(number_format($row["price"]*$array[$row["product_id"]],2) ) ?></td>
@@ -166,8 +168,8 @@ include_once("autoload.php");
                                     <hr>
                                 
                                     <div class="text-right">
-                                    <button class="btn btn-warning" type="submit" id="id_cancel_order"> ยกเลิกคำสั่งซื้อ </button>
-                                        <button class="btn btn-danger" type="submit" id="id_submit_order"> ยื่นยันสั่งซื้อ </button>
+                                    <button class="btn btn-warning" type="submit" id="id_cancel_order"> ยกเลิกคำขอสซื้อ </button>
+                                        <button class="btn btn-danger" type="submit" id="id_submit_order"> ยื่นยันคำขอซื้อ </button>
                                     </div>
                                 </div>
                             </div>

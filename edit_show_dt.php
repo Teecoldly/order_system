@@ -143,7 +143,7 @@ include_once("autoload.php");
                                                     <td class="text-center"><?php echo($i++) ?></td>
                                                     <td class="text-center"><?php echo($row["product_key"]) ?></td>
                                                     <td class="text-center"><?php echo($row["product_name"]) ?></td>
-                                                    <td class="text-center"><?php echo(($row["detail"]=='' ? 'null':$row["detail"])) ?></td>
+                                                    <td class="text-center"><?php echo$row["detail"] ?></td>
                                                     <td class="text-right"><?php echo($row["price"]) ?></td>
                                                     <td class="text-right"> <?php echo(number_format($array[$row["product_id"]] ))?> </td>
                                                     <td class="text-right"> <?php echo(number_format($row["price"]*$array[$row["product_id"]],2) ) ?></td>

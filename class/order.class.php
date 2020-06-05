@@ -129,6 +129,19 @@ class order extends db
      db::query($sql);
      return 1 ;
     }
+    public function load_order_by_orderid($id_order){
+        $sql = "SELECT * FROM `tb_order_details` WHERE `order_id` =".$id_order;
+        db::query($sql);
+        $this->result=db::default_data();
+        $data = array();
+        $result = array();
+        while($row = $this->result->fetch_assoc()){
+            $data[]=$row;
+        }
+        $result['data'] = $data;
+        return json_encode($result);
+
+    }
 }
 
 

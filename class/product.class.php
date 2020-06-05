@@ -75,10 +75,10 @@ class product extends db
     {
         return  $this->result;
     }
-    public function product_add($key,$name,$price,$unit_type,$type)
+    public function product_add($key,$name,$price,$unit_type,$type,$detail)
     {
         try {
-            $sql  = "INSERT INTO `product`(`product_key`, `product_name`,price, unit_type,`product_type`) VALUES ('".db::real_string($key)."','".db::real_string($name)."',".db::real_string($price).",'".db::real_string($unit_type)."',".db::real_string($type).")";
+            $sql  = "INSERT INTO `product`(`product_key`, `product_name`,price, unit_type,`product_type`,detail) VALUES ('".db::real_string($key)."','".db::real_string($name)."',".db::real_string($price).",'".db::real_string($unit_type)."',".db::real_string($type).",'".db::real_string($detail)."')";
            
             db::query($sql);
             echo 1;
